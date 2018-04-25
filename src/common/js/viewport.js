@@ -1,8 +1,9 @@
-(function( window , document ){
+/* eslint-disable */
+(function( window , document ) {
 
 	'use strict';
 
-	//给hotcss开辟个命名空间，别问我为什么，我要给你准备你会用到的方法，免得用到的时候还要自己写。
+	// 给hotcss开辟个命名空间，别问我为什么，我要给你准备你会用到的方法，免得用到的时候还要自己写。
 	var hotcss = {};
 
 	(function() {
@@ -77,7 +78,7 @@
 			designWidth = parseInt(hotcss.designWidth , 10);
 		}
 		//rem可能为小数，这里不再做处理了
-		return rem*20*designWidth/320;
+		return rem*20*designWidth/375;
 	}
 
 	hotcss.mresize = function(){

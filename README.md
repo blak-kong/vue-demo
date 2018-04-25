@@ -2,6 +2,10 @@
 
 > sell app
 
+使用vue-cli创建项目，自己手动配置scss和css module
+使用京东金融项目学到的完美自适应方案（自己手动配置）
+利用vue-router，使用组件化
+
 ## Build Setup
 
 ``` bash

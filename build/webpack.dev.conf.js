@@ -11,8 +11,10 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
 // mock
+// 引入 express 模块
 const express = require('express')
 const app = express()
+// 引入Json
 var appData = require('../data.json')
 var seller = appData.seller
 var goods = appData.goods
