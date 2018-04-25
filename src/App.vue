@@ -21,6 +21,7 @@
 <script type="text/ecmascript-6">
 import { urlParse } from "./common/js/util.js"
 import Heador from "./components/header/header.vue"
+const response = require('./common/data/seller.json')
 
 const ERR_OK = 0
 
@@ -41,17 +42,21 @@ const ERR_OK = 0
 	created() {
 		// do something after creating vue instance
 		// 获取ajax地址，传入数据
-		this.$http.get('./api/seller?id=' + this.seller.id).then((res)=>{
-		var resData  = res.data
-		if(resData.errno  === ERR_OK){
-			/* this.seller =  resData.data; 会覆盖掉id */
-			/* 防止把id覆盖掉，使用es6的一个语法:扩展了对象的属性，在原来的基础上添加response.data的值，不会覆盖掉原来的id属性 */
-			this.seller = Object.assign({},this.seller,resData.data)
-			console.log(this.seller.id)
-		}
-		},(res)=>{
-			alert(res.status)
-		});
+		// this.$http.get('./api/seller?id=' + this.seller.id).then((res)=>{
+		// var resData  = res.data
+		// if(resData.errno  === ERR_OK){
+		// 	/* this.seller =  resData.data; 会覆盖掉id */
+		// 	/* 防止把id覆盖掉，使用es6的一个语法:扩展了对象的属性，在原来的基础上添加response.data的值，不会覆盖掉原来的id属性 */
+		// 	this.seller = Object.assign({},this.seller,resData.data)
+		// 	console.log(this.seller.id)
+		// }
+		// },(res)=>{
+		// 	alert(res.status)
+		// });
+
+		if (response.errno === ERR_OK) {
+        	this.seller = Object.assign({}, this.seller, response.data);
+      	}
 	},
 	components: {
 		Heador

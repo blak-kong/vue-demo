@@ -56,6 +56,9 @@ import BScroll from 'better-scroll'
 import shopCart from '../shopcart/shopcart.vue'
 import cartControl from '../cartcontrol/cartcontrol.vue'
 import food from '../food/food.vue'
+const response = require('../../common/data/goods.json')
+
+const ERR_OK = 0
 
 export default {
     props: {
@@ -96,11 +99,11 @@ export default {
               good.foods.forEach((food) => {
                   // food大于0则把数据添加给foods
                   if(food.count) {
-                      foods.push(food);
+                      foods.push(food)
                   }
               });
           });
-          return foods;// 返回foods
+          return foods // 返回foods
       }
   },
   // 生命周期钩子-在模板渲染成html前调用，通常初始化某些属性值，然后再渲染成视图。
@@ -109,16 +112,24 @@ export default {
 
     //do something after creating vue instance
     // 获取ajax地址，传入数据
-    this.$http.get('/api/goods').then(res => {
-        this.goods = res.body.data
-        this.$nextTick(() => {
-            this._initScroll();
-            this._calculateHeight();
-        })
-    }, err => {
-        console.log(err)
-    });
-  },
+    // this.$http.get('/api/goods').then(res => {
+    //     this.goods = res.body.data
+    //     this.$nextTick(() => {
+    //         this._initScroll()
+    //         this._calculateHeight()
+    //     })
+    // }, err => {
+    //     console.log(err)
+    // })
+
+        if (response.errno === ERR_OK) {
+                this.goods = response.data;
+                this.$nextTick(() => {
+                this._initScroll();
+                this._calculateHeight();
+            });
+        }
+    },
   // 事件方法
   methods: {
       // 调用访问
